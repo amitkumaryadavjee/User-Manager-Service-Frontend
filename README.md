@@ -8,11 +8,8 @@ This is the frontend UI for a user management system, developed using React and 
 - [Tech Stack](#tech-stack)
 - [Installation](#installation)
 - [Running the Application](#running-the-application)
-- [Project Structure](#project-structure)
-- [Scripts](#scripts)
-- [Testing](#testing)
-- [Contributing](#contributing)
-- [License](#license)
+- [Scripts](#Scripts)
+- [Fork the repository.](#Fork the repository)
 
 ## Features
 

@@ -1,81 +1,3 @@
-// import React, { Component } from "react";
-// import { User } from "../interfaces/Users";
-// import { getUserById } from "../services/userService";
-// import { Link } from "react-router-dom";
-// import { withRouter, RouteComponentProps } from "../utils/withRouter"; // Custom HOC for routing
-
-// interface MatchParams {
-//   id: string;
-// }
-
-// interface ViewUserProps extends RouteComponentProps<MatchParams> {}
-
-// interface ViewUserState {
-//   user: User | null;
-//   loading: boolean;
-//   error: string | null;
-// }
-
-// class ViewUser extends Component<ViewUserProps, ViewUserState> {
-//   constructor(props: ViewUserProps) {
-//     super(props);
-//     this.state = {
-//       user: null,
-//       loading: true,
-//       error: null,
-//     };
-//   }
-
-//   componentDidMount() {
-//     const { id } = this.props.params; // Extract 'id' from the params
-//     this.fetchUserDetails(id);
-//   }
-
-//   async fetchUserDetails(id: string) {
-//     try {
-//       const user = await getUserById(id);
-//       this.setState({ user, loading: false });
-//     } catch (error: any) {
-//       this.setState({
-//         error: error.message || "Failed to fetch user details",
-//         loading: false,
-//       });
-//     }
-//   }
-
-//   render() {
-//     const { user, loading, error } = this.state;
-
-//     if (loading) {
-//       return <div>Loading user details...</div>;
-//     }
-
-//     if (error) {
-//       return <div>Error: {error}</div>;
-//     }
-
-//     if (!user) {
-//       return <div>User not found.</div>;
-//     }
-
-//     return (
-//       <div className="view-user">
-//         <h2>View User</h2>
-//         <div>
-//           <strong>Title:</strong> {user.title}
-//         </div>
-//         <div>
-//           <strong>Author:</strong> {user.author}
-//         </div>
-//         <div>
-//           <Link to="/">Back to User List</Link>
-//         </div>
-//       </div>
-//     );
-//   }
-// }
-
-// export default withRouter(ViewUser);
 
 import React, { Component } from "react";
 import { User } from "../interfaces/UserInterfaces"; // Updated User
@@ -107,7 +29,6 @@ class ViewUser extends Component<ViewUserProps, ViewUserState> {
 
   componentDidMount() {
     const { id } = this.props.params;
-    console.log("id:",id);
     this.fetchUserDetails(id);
   }
 

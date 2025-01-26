@@ -30,9 +30,13 @@ class UserList extends Component<Props, State> {
     loading: true,
   };
 
+
   componentDidMount() {
-    this.props.fetchUsers();
+    if (!this.props.users || this.state.users.length === 0){
+      this.props.fetchUsers();
+    }
   }
+
   componentDidUpdate(prevProps: Readonly<Props>, prevState: Readonly<State>, snapshot?: any): void {
    
       //const users = await getUsers();

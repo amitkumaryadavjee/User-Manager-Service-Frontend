@@ -1,46 +1,61 @@
-# Getting Started with Create React App
+# Address Book UI - React TypeScript Project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is the frontend UI for a user management system, developed using React and TypeScript. It connects with a Spring Boot backend to manage user data in the Address Book. This project uses Redux for state management and Axios for API requests.
 
-## Available Scripts
+## Table of Contents
 
-In the project directory, you can run:
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Installation](#installation)
+- [Running the Application](#running-the-application)
+- [Project Structure](#project-structure)
+- [Scripts](#scripts)
+- [Testing](#testing)
+- [Contributing](#contributing)
+- [License](#license)
 
-### `npm start`
+## Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- User management interface with CRUD operations (Create, Read, Update, Delete).
+- Built with React, TypeScript, Redux, and Redux-Saga.
+- Styled using Bootstrap 5.
+- Axios for making HTTP requests to the backend.
+- Route handling with React Router.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Tech Stack
 
-### `npm test`
+- **Frontend**: React, TypeScript, Redux, Axios, React Bootstrap
+- **Backend**: Spring Boot (Not included in this repo, but interacts with this UI)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Installation
 
-### `npm run build`
+Follow these steps to get the project up and running:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. Clone the repository to your local machine:
+   git clone https://github.com/amitkumaryadavjee/User-Manager-Service-Frontend.git
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Install the dependencies:
 
-### `npm run eject`
+npm install
+This will install the necessary packages listed in package.json.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Make sure the Spring Boot backend is running and the API is available. Update the axios base URL in your code to match the backend server URL.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Running the Application
+To run the development server, execute:
+npm start
+This will start the app on http://localhost:3000.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Scripts
+npm start: Runs the application in development mode.
+npm run build: Builds the app for production to the build folder.
+npm test: Runs the test suite using Jest.
+npm run eject: Ejects the create-react-app configuration if you want to customize it.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Fork the repository.
+Create a new branch (git checkout -b feature/your-feature-name).
+Make your changes.
+Commit your changes (git commit -am 'Add new feature').
+Push to the branch (git push origin feature/your-feature-name).
+Create a pull request.

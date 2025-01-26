@@ -13,10 +13,10 @@ interface StateProps {
 }
 
 interface DispatchProps {
-  fetchBooks: () => void;
+  
 }
 
-type Props = StateProps & DispatchProps;
+type Props = StateProps ;
 
 class BookList extends Component<Props> {
   componentDidMount() {

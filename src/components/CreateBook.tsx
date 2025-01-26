@@ -5,6 +5,8 @@ import { Navigate } from "react-router-dom";
 import { RootState } from "../redux/store";
 import { connect } from "react-redux";
 import { createBookRequest } from "../redux/actions/bookActions";
+import BookForm from "./BookForm";
+
 interface State {
   title: string;
   author: string;
@@ -54,13 +56,20 @@ class CreateBook extends Component<Props, State> {
     return (
       <div className="create-book">
         <h2>Create Book</h2>
-        <form onSubmit={this.handleSubmit}>
+        <BookForm
+          title={this.state.title}
+          author={this.state.author}
+          onChange={this.handleChange}
+          onSubmit={this.handleSubmit}
+          buttonText="Create"
+        />
+        {/* <form onSubmit={this.handleSubmit}>
           <label>Title:</label>
           <input type="text" name="title" value={this.state.title} onChange={this.handleChange} required />
           <label>Author:</label>
           <input type="text" name="author" value={this.state.author} onChange={this.handleChange} required />
           <button type="submit">Create</button>
-        </form>
+        </form> */}
       </div>
     );
   }

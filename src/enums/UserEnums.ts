@@ -1,8 +1,8 @@
-export enum BookStatus {
+export enum UserStatus {
     AVAILABLE = "Available",
     UNAVAILABLE = "Unavailable",
 }
 
 export enum ErrorMessages {
-    BOOK_NOT_FOUND = "Book not found",
+    BOOK_NOT_FOUND = "User not found",
 }

@@ -1,8 +1,8 @@
 import { combineReducers } from "@reduxjs/toolkit";
-import { bookReducer } from './reducers/bookReducer';
+import { userReducer } from './reducers/userReducer';
 
 const rootReducer = combineReducers({
-  bookReducer: bookReducer, 
+  userReducer: userReducer, 
   });
   
 export default rootReducer;

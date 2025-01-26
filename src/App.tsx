@@ -1,11 +1,10 @@
 
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Routes, Link, Navigate } from "react-router-dom";
-import BookList from "./components/BookList";
-import LocalBookList from "./components/LocalBookList";
-import CreateBook from "./components/CreateBook";
-import EditBook from "./components/EditBook";
-import ViewBook from "./components/ViewBook";
+import UserList from "./components/UserList";
+import CreateUser from "./components/CreateUser";
+import EditUser from "./components/EditUser";
+import ViewUser from "./components/ViewUser";
 import "./styles/App.css";
 
 class App extends Component {
@@ -14,17 +13,17 @@ class App extends Component {
       <Router>
         <div className="app-container">
           <nav className="navbar">
-            <h1>Book Manager</h1>
+            <h1>User Manager</h1>
             <ul>
               <li><Link to="/">Home</Link></li>
-              <li><Link to="/create">Add Book</Link></li>
+              <li><Link to="/create">Add User</Link></li>
             </ul>
           </nav>
           <Routes>
-            <Route path="/" element={<LocalBookList />} />
-            <Route path="/create" element={<CreateBook />} />
-            <Route path="/edit/:id" element={<EditBook />} />
-            <Route path="/view/:id" element={<ViewBook />} />
+            <Route path="/" element={<UserList />} />
+            <Route path="/create" element={<CreateUser />} />
+            {/* <Route path="/edit/:id" element={<EditUser />} /> */}
+            <Route path="/view/:id" element={<ViewUser />} />
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>
         </div>

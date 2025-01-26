@@ -1,10 +1,10 @@
 import { all } from "redux-saga/effects";
-import * as bookSaga from "./sagas/bookSaga";
+import * as userSaga from "./sagas/userSaga";
 export default function* rootSaga() {
   yield all([
-    bookSaga.fetchBookRequest(),
-    bookSaga.createBookRequest(),
-    bookSaga.updateBookRequest(),
-    bookSaga.deleteBookRequest(),
+    userSaga.fetchUserRequest(),
+    userSaga.createUserRequest(),
+    userSaga.updateUserRequest(),
+    userSaga.deleteUserRequest(),
   ]);
 }

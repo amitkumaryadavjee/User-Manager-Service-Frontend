@@ -2,60 +2,64 @@
 
 import React, { Component } from "react";
 import { Navigate } from "react-router-dom";
-import { getUserById, updateUser } from "../services/userService";
+//import { getUserById, updateUser } from "../services/userService";
 import { User } from "../interfaces/UserInterfaces";
 import UserForm from "./UserForm";
-//import { withRouter, RouteComponentProps } from "../utils/withRouter"; // Custom HOC for routing
+import { withRouter, RouteComponentProps } from "../utils/withRouter"; // Custom HOC for routing
+import { connect } from "react-redux";
+import { RootState } from "../redux/store";
+import { updateUserRequest} from "../redux/actions/userActions";
+interface MatchParams {
+  id: number;
+}
 
+interface EditUserProps extends StateProps, DispatchProps{
+  users: User[];
+  params: MatchParams;
+}
 
 interface State {
-  user: User;
+  user: User ;
   redirect: boolean;
 }
 
-class EditUser extends Component<{ id: string }, State> {
-  state: State = {
-    user: {
-      id: 0,
-      firstName: "",
-      lastName: "",
-      maidenName: "",
-      age: 0,
-      gender: "",
-      email: "",
-      phone: "",
-      username: "",
-      password: "",
-      birthDate: "",
-      image: "",
-      bloodGroup: "",
-      height: 0,
-      weight: 0,
-      eyeColor: "",
-      ip: "",
-      macAddress: "",
-      university: "",
-      ein: "",
-      ssn: "",
-      userAgent: "",
-      role: "",
-      hair: { id: null, color: "", type: "" },
-      address: {
-        id: null,
-        address: "",
-        city: "",
-        state: "",
-        stateCode: "",
-        postalCode: "",
-        country: "",
-        coordinates: { lat: 0, lng: 0 },
-      },
-      bank: { id: null, cardExpire: "", cardNumber: "", cardType: "", currency: "", iban: "" },
-      company: {
-        id: null,
-        name: "",
-        department: "",
-        title: "",
+interface StateProps {
+  users: User[];
+}
+
+interface DispatchProps {
+  updateUser: (user:User) => void;
+}
+
+class EditUser extends Component<EditUserProps, State> {
+  constructor(props: EditUserProps) {
+    super(props);
+    this.state = {
+      user: {
+        id: 0,
+        firstName: "",
+        lastName: "",
+        maidenName: "",
+        age: 0,
+        gender: "",
+        email: "",
+        phone: "",
+        username: "",
+        password: "",
+        birthDate: "",
+        image: "",
+        bloodGroup: "",
+        height: 0,
+        weight: 0,
+        eyeColor: "",
+        ip: "",
+        macAddress: "",
+        university: "",
+        ein: "",
+        ssn: "",
+        userAgent: "",
+        role: "",
+        hair: { id: null, color: "", type: "" },
         address: {
           id: null,
           address: "",
@@ -66,27 +70,39 @@ class EditUser extends Component<{ id: string }, State> {
           country: "",
           coordinates: { lat: 0, lng: 0 },
         },
+        bank: { id: null, cardExpire: "", cardNumber: "", cardType: "", currency: "", iban: "" },
+        company: {
+          id: null,
+          name: "",
+          department: "",
+          title: "",
+          address: {
+            id: null,
+            address: "",
+            city: "",
+            state: "",
+            stateCode: "",
+            postalCode: "",
+            country: "",
+            coordinates: { lat: 0, lng: 0 },
+          },
+        },
+        crypto: { id: null, coin: "", wallet: "", network: "" },
       },
-      crypto: { id: null, coin: "", wallet: "", network: "" },
-    },
-    redirect: false,
+      redirect: false,
   };
+}
 
   async componentDidMount() {
-   // const { id } = useParams(); 
-   // Get the id from URL params
-    const userId = Number(this.props.id);
-    //const userId = Number(this.props.id); // Convert id to a number
-    if (isNaN(userId)) {
-      console.error("Invalid user ID");
-      return;
+    const { id } = this.props.params;
+    const { users, params } = this.props;
+    const userId = Number(id);
+    if (users) {
+      const user = users.find((u) => u.id === userId) || this.state.user;
+      this.setState({ user, redirect: false });
+
     }
   
-    const user = await getUserById(userId);
-    this.setState({ user });
-
-    // const user = await getUserById(this.props.id);
-    // this.setState({ user });
   }
 
   handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -119,8 +135,10 @@ class EditUser extends Component<{ id: string }, State> {
 
   
   handleSubmit = async (e: React.FormEvent) => {
+    this.props.updateUser(this.state.user);
     e.preventDefault();
-    await updateUser(this.state.user);
+    // await updateUser(this.state.user);
+    
     this.setState({ redirect: true });
   };
 
@@ -145,16 +163,14 @@ class EditUser extends Component<{ id: string }, State> {
 }
 
 
-// export default (props: any) => {
-//   const { id } = useParams<{ id: string }>();
-//   return <EditUser id={id || ""} />;
-// };
+const mapStateToProps = (state: RootState): StateProps => ({
+  users: state.userReducer.users,
+});
 
-export default EditUser;
+const mapDispatchToProps = (dispatch: any): DispatchProps => ({
+  updateUser: (user:User) => dispatch(updateUserRequest(user)),
+});
 
-// const EditUserWrapper: React.FC = () => {
-//   const { id } = useParams<{ id: string }>();  // Get the 'id' from URL parameters
-//   return id ? <EditUser id={id} /> : <p>Invalid ID</p>;  // Pass 'id' as a prop to EditUser
-// };
 
-//export default withRouter(EditUser);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(EditUser));
+

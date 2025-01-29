@@ -64,7 +64,7 @@ export function* deleteUserRequest() {
 
 
 function* updateUser(action: any): Generator<any, void, any> {
-  const requestURL = backendBaseUrl + `/api/users/update/${action.id}`;
+  const requestURL = backendBaseUrl + `/api/users/update/${action.user.id}`;
   try {
     let requestBody = action.user;
     const response: AxiosResponse<User> = yield call(axios.put, requestURL, requestBody);

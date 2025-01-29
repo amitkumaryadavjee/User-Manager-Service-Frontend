@@ -22,7 +22,7 @@ class App extends Component {
           <Routes>
             <Route path="/" element={<UserList />} />
             <Route path="/create" element={<CreateUser />} />
-            {/* <Route path="/edit/:id" element={<EditUser />} /> */}
+            <Route path="/edit/:id" element={<EditUser />} />
             <Route path="/view/:id" element={<ViewUser />} />
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>

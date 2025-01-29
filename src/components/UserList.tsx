@@ -94,7 +94,7 @@ class UserList extends Component<Props, State> {
                   <td>{user.address.address}, {user.address.city}, {user.address.state}, {user.address.country}</td>
                   <td>
                     <Link to={`/view/${user.id}`}>View</Link> |{" "}
-                    {/* <Link to={`/edit/${user.id}`}>Edit</Link> |{" "} */}
+                    <Link to={`/edit/${user.id}`}>Edit</Link> |{" "}
                     <button onClick={() => this.handleDelete(user.id)}>
                       Delete
                     </button>

@@ -4,12 +4,21 @@ import { User } from "../interfaces/UserInterfaces"; // Updated User
 import { getUserById } from "../services/userService";
 import { Link } from "react-router-dom";
 import { withRouter, RouteComponentProps } from "../utils/withRouter"; // Custom HOC for routing
+import { connect } from "react-redux";
+import { RootState } from "../redux/store";
 
 interface MatchParams {
   id: number;
 }
 
-interface ViewUserProps extends RouteComponentProps<MatchParams> {}
+interface ViewUserProps {
+  users: User[];
+  params: MatchParams;
+}
+
+interface StateProps {
+  users: User[];
+}
 
 interface ViewUserState {
   user: User | null;
@@ -29,7 +38,14 @@ class ViewUser extends Component<ViewUserProps, ViewUserState> {
 
   componentDidMount() {
     const { id } = this.props.params;
-    this.fetchUserDetails(id);
+    const { users, params } = this.props;
+    const userId = Number(id);
+    if (users) {
+      const user = users.find((u) => u.id === userId) || null;
+      this.setState({ user, loading: false });
+
+    }
+   // this.fetchUserDetails(id);
   }
 
   async fetchUserDetails(id: number) {
@@ -43,6 +59,7 @@ class ViewUser extends Component<ViewUserProps, ViewUserState> {
       });
     }
   }
+
 
   render() {
     const { user, loading, error } = this.state;
@@ -163,4 +180,10 @@ class ViewUser extends Component<ViewUserProps, ViewUserState> {
   }
 }
 
-export default withRouter(ViewUser);
+const mapStateToProps = (state: RootState): StateProps => ({
+  users: state.userReducer.users,
+});
+
+export default withRouter(connect(mapStateToProps)(ViewUser));
+
+

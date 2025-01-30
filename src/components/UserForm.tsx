@@ -136,23 +136,6 @@ class UserForm extends Component<UserFormProps> {
         </div>
 
 
-
-        <div className="mb-3 d-flex align-items-center">
-          <label className="col-md-3 col-form-label">Gender:</label>
-          <div className="col-md-9">
-            <input
-              type="gender"
-              className="form-control"
-              name="gender"
-              value={user.gender}
-              onChange={onChange}
-              required
-            />
-          </div>
-        </div>
-
-
-
         <div className="mb-3 d-flex align-items-center">
           <label className="col-md-3 col-form-label">username:</label>
           <div className="col-md-9">

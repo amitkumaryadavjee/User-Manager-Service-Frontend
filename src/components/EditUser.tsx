@@ -9,6 +9,8 @@ import { withRouter, RouteComponentProps } from "../utils/withRouter"; // Custom
 import { connect } from "react-redux";
 import { RootState } from "../redux/store";
 import { updateUserRequest} from "../redux/actions/userActions";
+import { toast } from 'react-toastify';
+
 interface MatchParams {
   id: number;
 }
@@ -25,6 +27,7 @@ interface State {
 
 interface StateProps {
   users: User[];
+  error: string | null;
 }
 
 interface DispatchProps {
@@ -165,6 +168,7 @@ class EditUser extends Component<EditUserProps, State> {
 
 const mapStateToProps = (state: RootState): StateProps => ({
   users: state.userReducer.users,
+  error: state.userReducer.error,
 });
 
 const mapDispatchToProps = (dispatch: any): DispatchProps => ({

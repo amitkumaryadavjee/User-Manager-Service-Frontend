@@ -1,7 +1,5 @@
 import { call, put, takeEvery, takeLatest } from 'redux-saga/effects';
 import axios, { AxiosResponse } from 'axios';
-// import { fetchUserSuccess, fetchUserFailure } from '../actions/userActions';
-import { SagaIterator } from "redux-saga";
 import {
   fetchUserSuccess, fetchUserFailure, FETCH_USER_REQUEST, CREATE_USER_REQUEST,
   createUserSuccess, createUserFailure, deleteUserSuccess, deleteUserFailure,
@@ -38,7 +36,7 @@ function* createUser(action: any): Generator<any, void, any> {
     const data: User = response.data;
     yield put(createUserSuccess(data));
   } catch (error: any) {
-    yield put(createUserFailure(error));
+    yield put(createUserFailure(error.response.data.message));
   }
 }
 
@@ -54,7 +52,7 @@ function* deleteUser(action: any): Generator<any, void, any> {
     const response: AxiosResponse<string> = yield call(axios.delete, requestURL);
     yield put(deleteUserSuccess(action.id));
   } catch (error: any) {
-    yield put(deleteUserFailure(error));
+    yield put(deleteUserFailure(error.response.data.message));
   }
 }
 
@@ -71,7 +69,7 @@ function* updateUser(action: any): Generator<any, void, any> {
     const data: User = response.data;
     yield put(updateUserSuccess(data));
   } catch (error: any) {
-    yield put(updateUserFailure(error));
+    yield put(updateUserFailure(error.response.data.message));
   }
 }
 

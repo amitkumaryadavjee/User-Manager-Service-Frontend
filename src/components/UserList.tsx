@@ -6,10 +6,13 @@ import { fetchUserRequest , deleteUserRequest} from "../redux/actions/userAction
 import { User } from "../interfaces/UserInterfaces";
 import { RootState } from "../redux/store";
 import { getUsers, deleteUser } from "../services/userService";
+import { toast } from 'react-toastify';
+
 
 interface StateProps {
   users: User[];
   loading: boolean;
+  error: string | null;
 }
 
 interface DispatchProps {
@@ -38,18 +41,26 @@ class UserList extends Component<Props, State> {
   }
 
   componentDidUpdate(prevProps: Readonly<Props>, prevState: Readonly<State>, snapshot?: any): void {
-   
-      //const users = await getUsers();
-      if(this.props.users !== prevProps.users){
-        try {
-      let users = this.props.users;
-      console.log("Backend users", users);
-      this.setState({ users, loading: false });
-    
-    } catch (error) {
-      console.error("Error fetching users:", error);
-      this.setState({ loading: false });
-    }}
+
+    //const users = await getUsers();
+    if (this.props.users !== prevProps.users) {
+      try {
+        let users = this.props.users;
+        console.log("Backend users", users);
+        this.setState({ users, loading: false });
+
+      } catch (error) {
+        console.error("Error fetching users:", error);
+        this.setState({ loading: false });
+      }
+    }
+    if(this.props.error != prevProps.error){
+      toast.error(
+        <div>
+            <i className="fa fa-check"></i>&nbsp;Error :!!! {this.props.error}
+        </div>
+    );
+    }
   }
 
   handleDelete = async (id: number) => {
@@ -114,6 +125,7 @@ class UserList extends Component<Props, State> {
 const mapStateToProps = (state: RootState): StateProps => ({
   users: state.userReducer.users,
   loading: state.userReducer.loading,
+  error: state.userReducer.error
 });
 
 const mapDispatchToProps = (dispatch: any): DispatchProps => ({

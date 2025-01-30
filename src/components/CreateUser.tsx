@@ -24,7 +24,6 @@ interface DispatchProps {
 type Props = StateProps & DispatchProps;
 
 class CreateUser extends Component<Props, State> {
-//class CreateUser extends Component<{}, State> {
   state: State = {
     user: {
       id: 0,
